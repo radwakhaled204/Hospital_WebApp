@@ -1,0 +1,837 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="patient.master.cs" Inherits="Royal_Elshrouq.patient" %>
+<%@ Import NameSpace="System.Data.SqlClient" %>
+<%@ Import NameSpace="System.Data" %>
+<%@ Import NameSpace="System.Web.UI.WebControls" %>
+<!DOCTYPE html >
+
+<html lang="ar" dir="rtl">
+<head runat="server">
+    <title>klinik</title>
+        <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- jQuery UI library -->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"/>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-submenu@3.0.1/dist/css/bootstrap-submenu.css"/>
+    <script src="https://kit.fontawesome.com/180d76d3b6.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-submenu@3.0.1/dist/css/bootstrap-submenu.css"/>
+    <script src="https://kit.fontawesome.com/180d76d3b6.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-submenu@3.0.1/dist/js/bootstrap-submenu.js" ></script>   
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous"/>
+   <link rel="stylesheet" type="text/css" href="style_patient.css">
+
+</head>
+
+
+
+<body  style=" font-family: 'Arial', sans-serif;"  >
+    <form  runat="server">
+<header>
+    <div class="header" style="width: 100%">
+        <div class="row align-items-center">
+
+            <div class="col-sm-12 col-md-6 text-right">
+                <ul class="socialheader">
+                    <li>
+
+                        <asp:HyperLink ID="face" runat="server" class="so-a" target="_blank" title="Facebook" >
+                            <i class="fa-brands fa-facebook"></i>
+                        </asp:HyperLink>
+      
+                    </li>
+                    <li>
+                        <asp:HyperLink ID="whats" runat="server" class="so-a" target="_blank" title="WhatsApp" color="red">
+                            <i class="fa-brands fa-whatsapp"></i>
+                        </asp:HyperLink>
+                    </li>
+                    <li>
+                        <asp:HyperLink ID="X" runat="server" class="so-a" target="_blank" title="Twitter">
+                            <i class="fa-brands fa-twitter"></i>
+                        </asp:HyperLink>
+                    </li>
+                    <li>
+                        <asp:HyperLink ID="yt" runat="server" class="so-a" target="_blank" title="YouTube">
+                            <i class="fa-brands fa-youtube"></i>
+                        </asp:HyperLink>
+                    </li>
+                    <li style="justify-content: center;">
+                        <asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server"></asp:ContentPlaceHolder>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-sm-12 col-md-6">
+   <div id="timeDateDisplay" runat="server" style="color:black" CssClass="date-time-label"> 
+   </div>
+ </div>
+
+        </div>
+    </div>
+</header>
+
+    <!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light">
+       <div class="con">
+           <a class="navbar-brand" href="#">
+                  <asp:Image ID="logo1" runat="server" class="logo-66" style="height: 150px; "  /> 
+           </a>
+
+           <div class="collapse navbar-collapse" id="navbarNavDropdown">
+               <ul class="navbar-nav ml-auto">
+
+                        <li class="nav-item dropdown">
+                       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          العيادات الخارجية 
+                       </a>
+
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+
+    <li><a class="dropdown-item" href="service_coding.aspx">تسجيل الخدمات</a></li>
+    <li><a class="dropdown-item" href="#">تسعير الخدمات</a></li>
+    <li><a class="dropdown-item" href="#">تسجيل الاصناف</a></li>
+    <li><a class="dropdown-item" href="#">تسعير الاصناف</a></li>
+
+    <li><a class="dropdown-item" href="#">عبوات الاصناف</a></li>
+  </ul>
+
+                   </li>
+  <!-------------------------------------------------------------dropdown-menu------------------------------------------------------------->
+
+                   <li class="nav-item dropdown">
+                       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            الاطباء
+                       </a> 
+                           <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <li>
+      <a class="dropdown-item" href="#">
+       بناء النظام  &raquo;
+      </a>
+      <ul class="dropdown-menu dropdown-submenu">
+        <li>
+          <a class="dropdown-item" href="#">Submenu item 1</a>
+        </li>
+        <li>
+          <a class="dropdown-item" href="#">Submenu item 2</a>
+        </li>
+        <li>
+          <a class="dropdown-item" href="#">Submenu item 3 &raquo; </a>
+          <ul class="dropdown-menu dropdown-submenu">
+            <li>
+              <a class="dropdown-item" href="#">Multi level 1</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="#">Multi level 2</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a class="dropdown-item" href="#">Submenu item 4</a>
+        </li>
+        <li>
+          <a class="dropdown-item" href="#">Submenu item 5</a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a class="dropdown-item" href="#">
+        الحركة &raquo;
+      </a>
+      <ul class="dropdown-menu dropdown-submenu">
+        <li>
+          <a class="dropdown-item" href="#">الخزينة الرئيسية</a>
+        </li>
+        <li>
+          <a class="dropdown-item" href="#">اشعارات البنك</a>
+        </li>
+        <li>
+          <a class="dropdown-item" href="#">القيود المحاسبية</a>
+        </li>
+        <li>
+          <a class="dropdown-item" href="#">اليوميات</a>
+        </li>
+        <li>
+          <a class="dropdown-item" href="#">حركة الشيكات</a>
+        </li>
+        <li>
+          <a class="dropdown-item" href="#"> حركة الدفعات &raquo; </a>
+          <ul class="dropdown-menu dropdown-submenu">
+            <li>
+              <a class="dropdown-item" href="#">حساب مورد</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="#">حساب جهة تعاقد</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="#">حساب عميل</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a class="dropdown-item" href="#">مراكز التكلفة</a>
+        </li>
+        <li>
+          <a class="dropdown-item" href="#">مصمم القيود</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+      </li>
+  <!-------------------------------------------------------------dropdown-menu------------------------------------------------------------->
+
+                  <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                 معامل التحاليل
+       </a>
+     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <li>
+      <a class="dropdown-item" href="#">
+       بناء النظام  &raquo;
+      </a>
+      <ul class="dropdown-menu dropdown-submenu">
+        <li>
+          <a class="dropdown-item" href="#">Submenu item 1</a>
+        </li>
+        <li>
+          <a class="dropdown-item" href="#">Submenu item 2</a>
+        </li>
+        <li>
+          <a class="dropdown-item" href="#">Submenu item 3 &raquo; </a>
+          <ul class="dropdown-menu dropdown-submenu">
+            <li>
+              <a class="dropdown-item" href="#">Multi level 1</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="#">Multi level 2</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a class="dropdown-item" href="#">Submenu item 4</a>
+        </li>
+        <li>
+          <a class="dropdown-item" href="#">Submenu item 5</a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a class="dropdown-item" href="#">
+        الحركة &raquo;
+      </a>
+      <ul class="dropdown-menu dropdown-submenu">
+        <li>
+          <a class="dropdown-item" href="#">الخزينة الرئيسية</a>
+        </li>
+        <li>
+          <a class="dropdown-item" href="#">اشعارات البنك</a>
+        </li>
+        <li>
+          <a class="dropdown-item" href="#">القيود المحاسبية</a>
+        </li>
+        <li>
+          <a class="dropdown-item" href="#">اليوميات</a>
+        </li>
+        <li>
+          <a class="dropdown-item" href="#">حركة الشيكات</a>
+        </li>
+        <li>
+          <a class="dropdown-item" href="#"> حركة الدفعات &raquo; </a>
+          <ul class="dropdown-menu dropdown-submenu">
+            <li>
+              <a class="dropdown-item" href="#">حساب مورد</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="#">حساب جهة تعاقد</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="#">حساب عميل</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a class="dropdown-item" href="#">مراكز التكلفة</a>
+        </li>
+        <li>
+          <a class="dropdown-item" href="#">مصمم القيود</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+                   </li>
+  <!-------------------------------------------------------------dropdown-menu------------------------------------------------------------->
+                   <li class="nav-item dropdown">
+                       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            الأشعة 
+                       </a>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <li>
+      <a class="dropdown-item" href="#">
+       بناء النظام  &raquo;
+      </a>
+      <ul class="dropdown-menu dropdown-submenu">
+        <li>
+          <a class="dropdown-item" href="#">Submenu item 1</a>
+        </li>
+        <li>
+          <a class="dropdown-item" href="#">Submenu item 2</a>
+        </li>
+        <li>
+          <a class="dropdown-item" href="#">Submenu item 3 &raquo; </a>
+          <ul class="dropdown-menu dropdown-submenu">
+            <li>
+              <a class="dropdown-item" href="#">Multi level 1</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="#">Multi level 2</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a class="dropdown-item" href="#">Submenu item 4</a>
+        </li>
+        <li>
+          <a class="dropdown-item" href="#">Submenu item 5</a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a class="dropdown-item" href="#">
+        الحركة &raquo;
+      </a>
+      <ul class="dropdown-menu dropdown-submenu">
+        <li>
+          <a class="dropdown-item" href="#">الخزينة الرئيسية</a>
+        </li>
+        <li>
+          <a class="dropdown-item" href="#">اشعارات البنك</a>
+        </li>
+        <li>
+          <a class="dropdown-item" href="#">القيود المحاسبية</a>
+        </li>
+        <li>
+          <a class="dropdown-item" href="#">اليوميات</a>
+        </li>
+        <li>
+          <a class="dropdown-item" href="#">حركة الشيكات</a>
+        </li>
+        <li>
+          <a class="dropdown-item" href="#"> حركة الدفعات &raquo; </a>
+          <ul class="dropdown-menu dropdown-submenu">
+            <li>
+              <a class="dropdown-item" href="#">حساب مورد</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="#">حساب جهة تعاقد</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="#">حساب عميل</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a class="dropdown-item" href="#">مراكز التكلفة</a>
+        </li>
+        <li>
+          <a class="dropdown-item" href="#">مصمم القيود</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+                   </li>
+  <!-------------------------------------------------------------dropdown-menu------------------------------------------------------------->
+
+                   <li class="nav-item dropdown">
+                       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            المعامل  
+                       </a>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <li>
+      <a class="dropdown-item" href="#">
+       بناء النظام  &raquo;
+      </a>
+      <ul class="dropdown-menu dropdown-submenu">
+        <li>
+          <a class="dropdown-item" href="#">Submenu item 1</a>
+        </li>
+        <li>
+          <a class="dropdown-item" href="#">Submenu item 2</a>
+        </li>
+        <li>
+          <a class="dropdown-item" href="#">Submenu item 3 &raquo; </a>
+          <ul class="dropdown-menu dropdown-submenu">
+            <li>
+              <a class="dropdown-item" href="#">Multi level 1</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="#">Multi level 2</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a class="dropdown-item" href="#">Submenu item 4</a>
+        </li>
+        <li>
+          <a class="dropdown-item" href="#">Submenu item 5</a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a class="dropdown-item" href="#">
+        الحركة &raquo;
+      </a>
+      <ul class="dropdown-menu dropdown-submenu">
+        <li>
+          <a class="dropdown-item" href="#">الخزينة الرئيسية</a>
+        </li>
+        <li>
+          <a class="dropdown-item" href="#">اشعارات البنك</a>
+        </li>
+        <li>
+          <a class="dropdown-item" href="#">القيود المحاسبية</a>
+        </li>
+        <li>
+          <a class="dropdown-item" href="#">اليوميات</a>
+        </li>
+        <li>
+          <a class="dropdown-item" href="#">حركة الشيكات</a>
+        </li>
+        <li>
+          <a class="dropdown-item" href="#"> حركة الدفعات &raquo; </a>
+          <ul class="dropdown-menu dropdown-submenu">
+            <li>
+              <a class="dropdown-item" href="#">حساب مورد</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="#">حساب جهة تعاقد</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="#">حساب عميل</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a class="dropdown-item" href="#">مراكز التكلفة</a>
+        </li>
+        <li>
+          <a class="dropdown-item" href="#">مصمم القيود</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+                   </li>
+  <!-------------------------------------------------------------dropdown-menu------------------------------------------------------------->
+                   <li class="nav-item dropdown">
+                       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          الداخلى   
+                       </a>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <li>
+      <a class="dropdown-item" href="#">
+       بناء النظام  &raquo;
+      </a>
+      <ul class="dropdown-menu dropdown-submenu">
+        <li>
+          <a class="dropdown-item" href="#">Submenu item 1</a>
+        </li>
+        <li>
+          <a class="dropdown-item" href="#">Submenu item 2</a>
+        </li>
+        <li>
+          <a class="dropdown-item" href="#">Submenu item 3 &raquo; </a>
+          <ul class="dropdown-menu dropdown-submenu">
+            <li>
+              <a class="dropdown-item" href="#">Multi level 1</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="#">Multi level 2</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a class="dropdown-item" href="#">Submenu item 4</a>
+        </li>
+        <li>
+          <a class="dropdown-item" href="#">Submenu item 5</a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a class="dropdown-item" href="#">
+        الحركة &raquo;
+      </a>
+      <ul class="dropdown-menu dropdown-submenu">
+        <li>
+          <a class="dropdown-item" href="#">الخزينة الرئيسية</a>
+        </li>
+        <li>
+          <a class="dropdown-item" href="#">اشعارات البنك</a>
+        </li>
+        <li>
+          <a class="dropdown-item" href="#">القيود المحاسبية</a>
+        </li>
+        <li>
+          <a class="dropdown-item" href="#">اليوميات</a>
+        </li>
+        <li>
+          <a class="dropdown-item" href="#">حركة الشيكات</a>
+        </li>
+        <li>
+          <a class="dropdown-item" href="#"> حركة الدفعات &raquo; </a>
+          <ul class="dropdown-menu dropdown-submenu">
+            <li>
+              <a class="dropdown-item" href="#">حساب مورد</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="#">حساب جهة تعاقد</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="#">حساب عميل</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a class="dropdown-item" href="#">مراكز التكلفة</a>
+        </li>
+        <li>
+          <a class="dropdown-item" href="#">مصمم القيود</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+                   </li>
+
+  <!-------------------------------------------------------------dropdown-menu------------------------------------------------------------->
+                   <li class="nav-item dropdown">
+                       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          الموارد البشرية   
+                       </a>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <li>
+      <a class="dropdown-item" href="#">
+       بناء النظام  &raquo;
+      </a>
+      <ul class="dropdown-menu dropdown-submenu">
+        <li>
+          <a class="dropdown-item" href="#">Submenu item 1</a>
+        </li>
+        <li>
+          <a class="dropdown-item" href="#">Submenu item 2</a>
+        </li>
+        <li>
+          <a class="dropdown-item" href="#">Submenu item 3 &raquo; </a>
+          <ul class="dropdown-menu dropdown-submenu">
+            <li>
+              <a class="dropdown-item" href="#">Multi level 1</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="#">Multi level 2</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a class="dropdown-item" href="#">Submenu item 4</a>
+        </li>
+        <li>
+          <a class="dropdown-item" href="#">Submenu item 5</a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a class="dropdown-item" href="#">
+        الحركة &raquo;
+      </a>
+      <ul class="dropdown-menu dropdown-submenu">
+        <li>
+          <a class="dropdown-item" href="#">الخزينة الرئيسية</a>
+        </li>
+        <li>
+          <a class="dropdown-item" href="#">اشعارات البنك</a>
+        </li>
+        <li>
+          <a class="dropdown-item" href="#">القيود المحاسبية</a>
+        </li>
+        <li>
+          <a class="dropdown-item" href="#">اليوميات</a>
+        </li>
+        <li>
+          <a class="dropdown-item" href="#">حركة الشيكات</a>
+        </li>
+        <li>
+          <a class="dropdown-item" href="#"> حركة الدفعات &raquo; </a>
+          <ul class="dropdown-menu dropdown-submenu">
+            <li>
+              <a class="dropdown-item" href="#">حساب مورد</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="#">حساب جهة تعاقد</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="#">حساب عميل</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a class="dropdown-item" href="#">مراكز التكلفة</a>
+        </li>
+        <li>
+          <a class="dropdown-item" href="#">مصمم القيود</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+                   </li>
+  <!-------------------------------------------------------------dropdown-menu------------------------------------------------------------->
+
+               </ul>
+           </div>
+       </div>
+
+   </nav>
+
+  
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     <div class="wrapper" style="float: right;" >
+        <!-- Sidebar  -->
+ <nav id="sidebar" style="align-items:center; float: right;">
+     <div class="sidebar-header">
+         <h3> </h3>
+         <strong>BS</strong>
+     </div>
+
+     <ul class="list-unstyled components" style="align-items:center">
+
+         <li class="active">
+              
+             <a href="book.aspx">
+                  حجز
+            </a>
+   
+         </li>
+         <li class="active">
+              
+             <a href="inquiry.aspx">
+                  استفسار
+            </a>
+   
+         </li>
+         <li class="active">
+              
+             <a href="complaint.aspx">
+                  شكوى
+            </a>
+   
+         </li>
+         <li class="active">
+              
+             <a href="upload.aspx">
+                  تحميل ملفات
+            </a>
+   
+         </li>
+         <li class="active">
+              
+             <a href="suggestion.aspx">
+                   اقتراح
+            </a>
+   
+         </li>
+                  <li class="active">
+              
+             <a href="patient_info.aspx">
+                   بيانات المريض
+            </a>
+   
+         </li>
+         </ul>
+          <!-- Page Content 
+         <li>
+             <a href="#">
+                 <i class="fas fa-briefcase"></i>
+                 About
+             </a>
+             <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                 <i class="fas fa-copy"></i>
+                 Pages
+             </a>
+             <ul class="collapse list-unstyled" id="pageSubmenu">
+                 <li>
+                     <a href="#">Page 1</a>
+                 </li>
+                 <li>
+                     <a href="#">Page 2</a>
+                 </li>
+                 <li>
+                     <a href="#">Page 3</a>
+                 </li>
+             </ul>
+         </li>
+         <li>
+             <a href="#">
+                 <i class="fas fa-image"></i>
+                 Portfolio
+             </a>
+         </li>
+         <li>
+             <a href="#">
+                 <i class="fas fa-question"></i>
+                 FAQ
+             </a>
+         </li>
+         <li>
+             <a href="#">
+                 <i class="fas fa-paper-plane"></i>
+                 Contact
+             </a>
+         </li>
+     </ul>
+
+     <ul class="list-unstyled CTAs">
+         <li>
+             <a href="#" class="download">Download source</a>
+         </li>
+         <li>
+             <a href="#" class="article">Back to article</a>
+         </li>
+     </ul>
+               -->
+ </nav>
+   <div id="content" widt="80%">
+      <div runat="server">
+          <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+          </asp:ContentPlaceHolder>
+      </div>
+ </div>
+       
+   </div>   
+
+
+
+
+
+
+ <!--FOOTER-->
+<footer class="footer-77">
+
+        <div class="footer-right">
+        <h2 >
+            التواصل
+        </h2>
+        <div class="contact">
+            <a href="#">    
+                <p>
+                +201060953781
+                </p>
+                <i class="fa-solid fa-phone"></i>
+            </a>
+            <a href="#">   
+                <p>
+                  0100665963
+                </p>
+                <i class="fa fa-mobile"></i>
+            </a>
+            <a href="#">
+                <p>
+                  radwaabouzed@gmail.com
+                </p>
+                <i class="hsoub-menu-item-link-icon fa fa-envelope"></i>
+            </a>
+        </div>
+    </div>
+
+    <div class="footer-content-77">
+        <h3 class="fo-h3">مستشفى رويال الشروق</h3>
+        <p class="fo-p">مستشفي الشروق رويال تقدم أفضل الخدمات الطبية باسعار مميزة بفريق طبي متخصص وعلي قدر عالي من الكفاءة وتقدم خدمة الطوارى 24 ساعة علي مدار</p>
+        <ul class="social-77">
+            <li class="so-li"><a href="#" class="so-a"><i class="fa-brands fa-facebook"></i></a></li>
+            <li class="so-li"><a href="#" class="so-a"><i class="fa-brands fa-twitter"></i></a></li>
+            <li class="so-li"><a href="#" class="so-a"><i class="fa-brands fa-linkedin"></i></a></li>
+            <li class="so-li"><a href="#" class="so-a"><i class="fa-brands fa-instagram"></i></a></li>
+        </ul>
+
+
+        <div class="footer-bottom-77">
+            <p class="fo-p">Copyright &copy;2023 . designed by <span class="so-spn">Radwa</span></p>
+        </div>
+
+    </div>
+
+
+        <div class="footer-left">
+        <h1>
+            الفروع
+        </h1>
+        <div class="contact">
+            <a href="#">
+       
+               <i class="fa-solid fa-location-dot"></i>
+                        <p>الخريطة</p>
+            </a>
+            <a href="#">   
+
+                <i class="fa-solid fa-location-dot"></i>
+                                <p>
+             مدينة الشروق . طريق جمال عبد الناصر منطقة التعاونيات بجوار سيتي مول
+                </p>
+            </a>
+            <br>
+            <br>
+        </div>
+    </div>
+
+
+</footer>
+
+
+
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar').toggleClass('active');
+            });
+        });
+    </script>
+
+      <asp:ContentPlaceHolder ID="ContentPlaceHolder4" runat="server">
+  </asp:ContentPlaceHolder>
+        </form>
+</body>
+</html>

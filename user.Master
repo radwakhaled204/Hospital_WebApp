@@ -1,0 +1,335 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="user.master.cs" Inherits="Royal_Elshrouq.user" %>
+<%@ Import NameSpace="System.Data.SqlClient" %>
+<%@ Import NameSpace="System.Data" %>
+<%@ Import NameSpace="System.Web.UI.WebControls" %>
+<!DOCTYPE html >
+
+<html xmlns="http://www.w3.org/1999/xhtml"  dir="rtl">
+<head runat="server">
+    <title>klinik</title>
+        <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/180d76d3b6.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+   <link rel="stylesheet" type="text/css" href="style_patient.css">
+
+</head>
+
+<body>
+    <form  runat="server">
+    <header>
+        <div class="con" style="width:100%">
+            <div class="row align-items-center">
+                <div class="col-sm-12 col-md-3">
+                    <ul class="socialheader" style="width:100%">
+                        <li>
+                           <asp:HyperLink ID="face" runat="server" class="so-a" target="_blank">
+                              <i class="fa-brands fa-facebook" title="Facebook"></i>
+                           </asp:HyperLink>
+                        </li>
+                        <li>
+                           <asp:HyperLink ID="whats" runat="server" class="so-a" target="_blank">
+                               <i class="fa-brands fa-whatsapp" title="WhatsApp"></i>
+                            </asp:HyperLink>
+                        </li>
+                        <li>
+                           <asp:HyperLink ID="inst" runat="server" class="so-a" target="_blank">
+                             <i class="fa-brands fa-instagram" title="Instagram"></i>
+                          </asp:HyperLink>
+                        </li>
+                        <li>
+                           <asp:HyperLink ID="X" runat="server" class="so-a" target="_blank">
+                               <i class="fa-brands fa-twitter" title="Twitter"></i>
+                           </asp:HyperLink>
+                        </li>
+                        <li>
+                           <asp:HyperLink ID="link" runat="server" class="so-a" target="_blank">
+                                 <i class="fa-brands fa-linkedin" title="LinkedIn"></i>
+                          </asp:HyperLink>
+                        </li>
+                        <li>
+                           <asp:HyperLink ID="yt" runat="server" class="so-a" target="_blank">
+                              <i class="fa-brands fa-youtube" title="YouTube"></i>
+                           </asp:HyperLink>
+                        </li>
+                          <li style="justify-content:center;">
+                          <asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server">
+                           </asp:ContentPlaceHolder>
+                          </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div> 
+
+    </header>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="con">
+            <a class="navbar-brand" href="#">
+                   <asp:Image ID="logo1" runat="server" class="logo-66" style="height: 150px; "  /> 
+            </a>
+
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                             العيادات الخارجية
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <div class="subdropdown">
+                    <a class="dropdown-item" href="#"> الاطباء </a>
+                               
+                            <div class="subdropdown-content">
+                                <a href="save_doc.aspx"> تسجيل مواعيد  </a>
+
+                            </div>
+                         </div>
+                    <a class="dropdown-item" href="book.aspx">حجز لمريض</a>
+                    <a class="dropdown-item" href="show_books.aspx">عرض الحجوزات</a>
+                    <a class="dropdown-item" href="show_uploads.aspx">الملفات المرفوعة</a>
+                    <a class="dropdown-item" href="show_inquiries.aspx">عرض الاستفسارات</a>
+                    <a class="dropdown-item" href="show_complaints.aspx">عرض الشكاوى</a>
+                    <a class="dropdown-item" href="show_suggestions.aspx">عرض الاقتراحات</a>
+                        </div>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                           الحسابات 
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="/StaticContent/tracks">المجالات التدريبية</a>
+                            <a class="dropdown-item" href="/StaticContent/AcademicProgram">نظام التدريب</a>
+                            <a class="dropdown-item" href="/StaticContent/NominationCriteria">شروط التقديم</a>
+                            <a class="dropdown-item" href="/StaticContent/AdmissionCriteria">معايير القبول بالمنحة</a>
+                            <a class="dropdown-item" href="/StaticContent/typesOfColleges">البرامج المتاحة لكل
+                                كلية</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            مراقبة العهده 
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="/StaticContent/tracks">المجالات التدريبية</a>
+                            <a class="dropdown-item" href="/StaticContent/AcademicProgram">نظام التدريب</a>
+                            <a class="dropdown-item" href="/StaticContent/NominationCriteria">شروط التقديم</a>
+                            <a class="dropdown-item" href="/StaticContent/AdmissionCriteria">معايير القبول بالمنحة</a>
+                            <a class="dropdown-item" href="/StaticContent/typesOfColleges">البرامج المتاحة لكل
+                                كلية</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                             معامل التحاليل 
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="/StaticContent/tracks">المجالات التدريبية</a>
+                            <a class="dropdown-item" href="/StaticContent/AcademicProgram">نظام التدريب</a>
+                            <a class="dropdown-item" href="/StaticContent/NominationCriteria">شروط التقديم</a>
+                            <a class="dropdown-item" href="/StaticContent/AdmissionCriteria">معايير القبول بالمنحة</a>
+                            <a class="dropdown-item" href="/StaticContent/typesOfColleges">البرامج المتاحة لكل
+                                كلية</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                           الداخلى   
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="room_detail.aspx">التسكين</a>
+                            <a class="dropdown-item" href="/StaticContent/AcademicProgram">نظام التدريب</a>
+                            <a class="dropdown-item" href="/StaticContent/NominationCriteria">شروط التقديم</a>
+                            <a class="dropdown-item" href="/StaticContent/AdmissionCriteria">معايير القبول بالمنحة</a>
+                            <a class="dropdown-item" href="/StaticContent/typesOfColleges">البرامج المتاحة لكل
+                                كلية</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            وحدة الاشعات   
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="/StaticContent/tracks">المجالات التدريبية</a>
+                            <a class="dropdown-item" href="/StaticContent/AcademicProgram">نظام التدريب</a>
+                            <a class="dropdown-item" href="/StaticContent/NominationCriteria">شروط التقديم</a>
+                            <a class="dropdown-item" href="/StaticContent/AdmissionCriteria">معايير القبول بالمنحة</a>
+                            <a class="dropdown-item" href="/StaticContent/typesOfColleges">البرامج المتاحة لكل
+                                كلية</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                           HR   
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="/StaticContent/tracks">المجالات التدريبية</a>
+                            <a class="dropdown-item" href="/StaticContent/AcademicProgram">نظام التدريب</a>
+                            <a class="dropdown-item" href="/StaticContent/NominationCriteria">شروط التقديم</a>
+                            <a class="dropdown-item" href="/StaticContent/AdmissionCriteria">معايير القبول بالمنحة</a>
+                            <a class="dropdown-item" href="/StaticContent/typesOfColleges">البرامج المتاحة لكل
+                                كلية</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                           USERS    
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="signup.aspx" onclick=" return CheckSession();" id="createaccount"> انشاء حساب </a>
+                            <a class="dropdown-item" href="/StaticContent/AcademicProgram">نظام التدريب</a>
+                            <a class="dropdown-item" href="/StaticContent/NominationCriteria">شروط التقديم</a>
+                            <a class="dropdown-item" href="/StaticContent/AdmissionCriteria">معايير القبول بالمنحة</a>
+                            <a class="dropdown-item" href="/StaticContent/typesOfColleges">البرامج المتاحة لكل
+                                كلية</a>
+                        </div>
+                    </li>
+                    <!-- Add more navbar items as needed -->
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+  
+
+
+
+
+
+   <div id="con">
+                
+      <div runat="server">
+          <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+          </asp:ContentPlaceHolder>
+      </div>
+
+
+ </div>
+
+
+
+
+
+
+
+ <!--FOOTER-->
+<footer class="footer-77">
+    <div class="footer-left">
+        <h1>
+            الفروع
+        </h1>
+        <div class="contact">
+            <a href="#">
+               <p>الخريطة</p>
+               <i class="fa-solid fa-location-dot"></i>
+            </a>
+            <a href="#">   
+                <p>
+             مدينة الشروق . طريق جمال عبد الناصر منطقة التعاونيات بجوار سيتي مول
+                </p>
+                <i class="fa-solid fa-location-dot"></i>
+            </a>
+            <br/>
+            <br/>
+        </div>
+    </div>
+
+    <div class="footer-content-77">
+        <h3 class="fo-h3">مستشفى رويال الشروق</h3>
+        <p class="fo-p">مستشفي الشروق رويال تقدم أفضل الخدمات الطبية باسعار مميزة بفريق طبي متخصص وعلي قدر عالي من الكفاءة وتقدم خدمة الطوارى 24 ساعة علي مدار</p>
+        <ul class="social-77">
+            <li class="so-li"><a href="#" class="so-a"><i class="fa-brands fa-facebook"></i></a></li>
+            <li class="so-li"><a href="#" class="so-a"><i class="fa-brands fa-twitter"></i></a></li>
+            <li class="so-li"><a href="#" class="so-a"><i class="fa-brands fa-linkedin"></i></a></li>
+            <li class="so-li"><a href="#" class="so-a"><i class="fa-brands fa-instagram"></i></a></li>
+        </ul>
+
+
+        <div class="footer-bottom-77">
+            <p class="fo-p">Copyright &copy;2023 . designed by <span class="so-spn">Radwa</span></p>
+        </div>
+
+    </div>
+
+    <div class="footer-right">
+        <h2 >
+            التواصل
+        </h2>
+        <div class="contact">
+            <a href="#">    
+                <p>
+                +201060953781
+                </p>
+                <i class="fa-solid fa-phone"></i>
+            </a>
+            <a href="#">   
+                <p>
+                  0100665963
+                </p>
+                <i class="fa fa-mobile"></i>
+            </a>
+            <a href="#">
+                <p>
+                  radwaabouzed@gmail.com
+                </p>
+                <i class="hsoub-menu-item-link-icon fa fa-envelope"></i>
+            </a>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- jQuery CDN - Slim version (=without AJAX) -
+    <script src="" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <!-- Popper.JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar').toggleClass('active');
+            });
+        });
+
+
+        function CheckSession() {
+            var adminSessionValue = <%= Session["admin_"] ?? 0 %>;
+
+              if (adminSessionValue == 2) {
+                  window.location.replace('signup.aspx');
+                  return true;
+              } else {
+                  alert('غير مسموح لك استخدام هذه الصفحة.');
+                  window.location.replace('user_page.aspx');
+                  return false;
+              }
+        }
+    </script>
+
+
+
+       <asp:ContentPlaceHolder ID="ContentPlaceHolder4" runat="server">
+  </asp:ContentPlaceHolder>
+
+</form>
+</body>
+</html>

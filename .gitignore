@@ -1,0 +1,18 @@
+# Ignore build outputs and intermediates
+bin/
+obj/
+
+# Ignore Visual Studio folder
+.vs/
+
+# Ignore user-specific files
+*.user
+*.suo
+
+# Ignore web config transformations
+Web.Debug.config
+Web.Release.config
+
+# Ignore RDLC Report source code directory
+'RDLC Report Source Code'/
+

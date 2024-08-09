@@ -1,0 +1,209 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="master1.Master.cs" Inherits="Royal_Elshrouq._interface" %>
+<%@ Import NameSpace="System.Data.SqlClient" %>
+<%@ Import NameSpace="System.Data" %>
+<%@ Import NameSpace="System.Web.UI.WebControls" %>
+<!DOCTYPE html>
+
+<html lang="ar" dir="rtl">
+<head runat="server">
+    <title>klinik</title>
+     <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <!--ICONS--> <script src="https://kit.fontawesome.com/180d76d3b6.js" crossorigin="anonymous"></script>
+   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
+   integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA=="
+   crossorigin="anonymous" referrerpolicy="no-referrer"/>
+
+       <!-- Bootstrap CSS CDN -->
+       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+  
+
+
+       <!-- Font Awesome JS -->
+       <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
+       <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+   <link rel="stylesheet" type="text/css" href="style_interface.css">
+    
+    <style type="text/css">
+        .auto-style1 {
+            height: 110px;
+        }
+        .auto-style2 {
+            height: 50px;
+        }
+    </style>
+    
+</head>
+<body >
+<form  runat="server">
+<header class="auto-style1" >
+
+        <div class="nav-rectangle nav-left" style="height: 200px">
+        <div  >           
+            <asp:Image ID="logo1" runat="server" class="logo-66" />  
+        </div>
+    </div>
+    <div class="nav-rectangle nav-center">
+        <div class="image-row">
+             <asp:Image ID="h_img" runat="server" />  
+        </div>
+<ul class="social-77">
+    <li class="so-li">
+        <asp:HyperLink ID="face" runat="server" class="so-a" target="_blank">
+            <i class="fa-brands fa-facebook" title="Facebook"></i>
+        </asp:HyperLink>
+    </li>
+    <li class="so-li">
+        <asp:HyperLink ID="whats" runat="server" class="so-a" target="_blank">
+ 
+            <i class="fa-brands fa-whatsapp" title="WhatsApp"></i>
+        </asp:HyperLink>
+    </li>
+      <li class="so-li">
+        <asp:HyperLink ID="inst" runat="server" class="so-a" target="_blank">
+            <i class="fa-brands fa-instagram" title="Instagram"></i>
+        </asp:HyperLink>
+    </li>
+    <li class="so-li">
+        <asp:HyperLink ID="link" runat="server" class="so-a" target="_blank">
+            <i class="fa-brands fa-linkedin" title="LinkedIn"></i>
+        </asp:HyperLink>
+    </li>
+    <li class="so-li">
+        <asp:HyperLink ID="X" runat="server" class="so-a" target="_blank">
+            <i class="fa-brands fa-twitter" title="Twitter"></i>
+        </asp:HyperLink>
+    </li>
+
+    <li class="so-li">
+        <asp:HyperLink ID="yt" runat="server" class="so-a" target="_blank">
+            <i class="fa-brands fa-youtube" title="YouTube"></i>
+        </asp:HyperLink>
+    </li>
+
+</ul>
+
+<nav class="navbar navbar-expand-lg navbar-light">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mx-auto">
+            <li class="nav-item dropdown">
+                <asp:DropDownList ID="about" runat="server" CssClass="form-control custom-dropdown" Style="text-align: center" AutoPostBack="true" OnSelectedIndexChanged="about_SelectedIndexChanged"></asp:DropDownList>
+            </li>
+            <li class="nav-item dropdown">
+                <asp:DropDownList ID="floor" runat="server" CssClass="form-control custom-dropdown" Style="text-align: center" AutoPostBack="true" OnSelectedIndexChanged="floor_SelectedIndexChanged"></asp:DropDownList>
+            </li>
+
+              <li class="nav-item dropdown">
+                <asp:DropDownList ID="room" runat="server" CssClass="form-control custom-dropdown" Style="text-align: center" AutoPostBack="false"></asp:DropDownList>
+            </li>
+
+            <li class="nav-item dropdown">
+                <asp:DropDownList ID="ayada" runat="server" CssClass="form-control custom-dropdown" Style="text-align: center" AutoPostBack="true" OnSelectedIndexChanged="ayada_SelectedIndexChanged"></asp:DropDownList>
+            </li>
+            <li class="nav-item dropdown">
+                <asp:DropDownList ID="doc" runat="server" CssClass="form-control custom-dropdown" AutoPostBack="true" Style="text-align: center" OnSelectedIndexChanged="doc_SelectedIndexChanged"></asp:DropDownList>
+            </li>
+
+
+        </ul>
+    </div>
+</nav>
+
+
+</div>
+
+
+
+
+        <div class="nav-rectangle nav-right" style="height: 200px">
+        <div>
+           <asp:Image ID="logo2" runat="server" class="logo-66" />  
+        </div>
+    </div>
+</header>
+  
+
+
+
+        <div id="rf" style="  margin-top: 150px;margin-bottom:300px">
+
+      <div>
+          <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+          </asp:ContentPlaceHolder>
+      </div>
+        </div>
+
+
+
+
+    <footer class="foter" style="margin-top:auto">
+      
+      <div class="nav-rectangle nav-left" style="height: 200px">
+        <div>           
+         <asp:Image ID="ist_logo1" runat="server" class="logo-66" />  
+        </div>
+    </div>
+
+
+    <div class="nav-rectangle nav-center">  
+
+        <ul class="social-77">
+           <li class="so-li"><asp:HyperLink ID="f_face" runat="server" class="so-a" target="_blank"><i class="fa-brands fa-facebook" title="Facebook" ></i></asp:HyperLink></li>
+              <li class="so-li">
+        <asp:HyperLink ID="f_whats" runat="server" class="so-a" target="_blank">
+ 
+            <i class="fa-brands fa-whatsapp" title="WhatsApp"></i>
+        </asp:HyperLink>
+    </li>
+       <li class="so-li"><asp:HyperLink ID="f_inst" runat="server" class="so-a" target="_blank"><i class="fa-brands fa-instagram" title="Instgram"></i></asp:HyperLink></li>
+            <li class="so-li"><asp:HyperLink ID="f_link" runat="server" class="so-a" target="_blank"><i class="fa-brands fa-linkedin" title="Linkdin"></i></asp:HyperLink></li>
+            <li class="so-li"><asp:HyperLink ID="f_X" runat="server" class="so-a" target="_blank"><i class="fa-brands fa-twitter" title="Twitter"></i></asp:HyperLink></li>
+            <li class="so-li">
+        <asp:HyperLink ID="f_yt" runat="server" class="so-a" target="_blank">
+            <i class="fa-brands fa-youtube" title="YouTube"></i>
+        </asp:HyperLink>
+    </li>
+
+        </ul>
+          <div class="image-row">
+          <asp:Image ID="ist_img" runat="server" />  
+        </div> 
+                       <div class="foter-btm">
+            <p class="fo-p">Copyright &copy;2023 . designed by <span class="so-spn">Radwa</span></p>
+        </div>
+</div>
+
+
+
+
+
+
+    
+          <div class="nav-rectangle nav-right" style="height: 200px">
+        <div>
+            <asp:Image ID="ist_logo2" runat="server" class="logo-66"/>  
+        </div>
+    </div>
+
+
+
+
+</footer>
+
+
+
+
+    </form>
+</body>
+     
+</html>
+
+
+
